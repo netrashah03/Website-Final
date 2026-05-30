@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Photography Gallery | Netra Shah</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .gallery-counter {
+      font-family: 'Inter', sans-serif; font-size: 0.85rem;
+      color: var(--text-muted); margin-top: 0.75rem;
+      letter-spacing: 0.08em; text-align: center;
+    }
+    .carousel-track { aspect-ratio: 4/3; }
+    .media-slide {
+      display: none; position: absolute; inset: 0; opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    .media-slide.active { display: flex; align-items: center; justify-content: center; opacity: 1; }
+    .media-slide img { width: 100%; height: 100%; object-fit: contain; object-position: center center; border-radius: 16px; background: #0a1a38; }
+    .media-placeholder {
+      width: 100%; height: 100%; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 0.75rem;
+      color: rgba(255,255,255,0.5); background: linear-gradient(135deg,#0D2147,#1a3d7a);
+      border-radius: 16px;
+    }
+    .media-placeholder .ph-icon { font-size: 3rem; }
+    .media-placeholder .ph-label { font-family:'Playfair Display',serif; font-style:italic; font-size:1rem; color:rgba(255,255,255,0.45); }
+    .gallery-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 48px; height: 48px;
+      background: rgba(255,255,255,0.15); backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.25); border-radius: 50%;
+      color: white; font-size: 1.25rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.25s, transform 0.25s; z-index: 10;
+    }
+    .gallery-btn:hover { background: var(--accent); transform: translateY(-50%) scale(1.1); }
+    .gallery-btn.prev { left: -24px; }
+    .gallery-btn.next { right: -24px; }
+    .gallery-dots { display: flex; justify-content: center; gap: 0.5rem; margin-top: 1rem; }
+    .g-dot {
+      width: 8px; height: 8px; border-radius: 50%; background: var(--divider);
+      cursor: pointer; transition: background 0.25s, transform 0.25s; border: none;
+    }
+    .g-dot.active { background: var(--accent); transform: scale(1.3); }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">Netra Shah</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="athletics.html">Athletics</a></li>
+        <li><a href="resume.html">Resume</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="planning.html">Planning</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><button id="theme-toggle">🌙 <span style="font-size:0.75rem;font-family:Inter,sans-serif;font-weight:600">Dark</span></button></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <h1 class="fade-up fade-up-1">Creative Photography Gallery</h1>
+    <p class="fade-up fade-up-2">A curated collection of landscape, nature, and creative photography.</p>
+  </div>
+
+  <section class="carousel-section" style="padding-top:3.5rem;">
+    <div class="container">
+      <div class="carousel-wrapper" style="position:relative;max-width:800px;margin:0 auto;">
+        <div class="carousel-track" id="gallery-track" style="position:relative;width:100%;background:#0a1a38;border-radius:16px;overflow:hidden;box-shadow:0 16px 48px rgba(13,33,71,0.22);">
+          <!-- slides injected by JS -->
+        </div>
+        <button class="gallery-btn prev" id="g-prev" aria-label="Previous">&#8249;</button>
+        <button class="gallery-btn next" id="g-next" aria-label="Next">&#8250;</button>
+        <p class="carousel-caption" id="g-caption" style="margin-top:1.25rem;font-family:'Playfair Display',serif;font-style:italic;color:var(--text-muted);font-size:0.95rem;text-align:center;"></p>
+        <p class="gallery-counter" id="g-counter"></p>
+        <div class="gallery-dots" id="g-dots"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Netra Shah · Rancho Bernardo High School · San Diego, CA</p>
+  </footer>
+
+  <script src="dynamic-theme.js"></script>
+  <script>
+  // ============================================================
+  //  PHOTOGRAPHY — all images live in an images/ subfolder
+  // ============================================================
+  const PHOTOS = [
+    { src:'IMG_0730.JPG',                                        caption:'Golden hour — sun kissing the ocean horizon' },
+    { src:'IMG_0530.JPG',                                        caption:'Silhouettes at sunset — two figures exploring the shoreline' },
+    { src:'IMG_0398.JPG',                                        caption:'Motion blur at dusk — a quiet walk along the water\'s edge' },
+    { src:'IMG_0557.JPG',                                        caption:'Running at the water\'s edge — motion and light at dusk' },
+    { src:'landscapesubmit1.jpg',                                caption:'Wild sage and chaparral — golden hills of San Diego at dusk' },
+    { src:'landscapesubmit2.jpg',                                caption:'Tunnel of trees — a moody road through the forest' },
+    { src:'IMG_9123.JPG',                                        caption:'Light trails — long exposure of a San Diego freeway at night' },
+    { src:'IMG_9917.JPG',                                        caption:'Shore birds — two seagulls on the sand at dusk' },
+    { src:'pinkgoldrose copy-1.jpg',                             caption:'After the rain — macro detail of a purple rose with water droplets' },
+    { src:'yellowflowersubmit.jpg',                              caption:'Chrysanthemum — warm tones and layered petals in the garden' },
+    { src:'IMG_7053_Netra_Shah_Div4701_cls007_FINAL.JPG',       caption:'Crystal ball refraction — light and color in a glass sphere' },
+  ];
+
+  let idx = 0;
+  const gtrack  = document.getElementById('gallery-track');
+  const gCaption = document.getElementById('g-caption');
+  const gCounter = document.getElementById('g-counter');
+  const gDots    = document.getElementById('g-dots');
+
+  PHOTOS.forEach((p, i) => {
+    const slide = document.createElement('div');
+    slide.className = 'media-slide' + (i === 0 ? ' active' : '');
+    const img = document.createElement('img');
+    img.src = p.src; img.alt = p.caption;
+    slide.appendChild(img);
+    gtrack.appendChild(slide);
+
+    const dot = document.createElement('button');
+    dot.className = 'g-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Photo ' + (i + 1));
+    dot.addEventListener('click', () => goTo(i));
+    gDots.appendChild(dot);
+  });
+
+  function goTo(n) {
+    const slides = gtrack.querySelectorAll('.media-slide');
+    const dots   = gDots.querySelectorAll('.g-dot');
+    slides[idx].classList.remove('active');
+    dots[idx].classList.remove('active');
+    idx = (n + PHOTOS.length) % PHOTOS.length;
+    slides[idx].classList.add('active');
+    dots[idx].classList.add('active');
+    gCaption.textContent = PHOTOS[idx].caption;
+    gCounter.textContent = (idx + 1) + ' / ' + PHOTOS.length;
+  }
+
+  gCaption.textContent = PHOTOS[0].caption;
+  gCounter.textContent = '1 / ' + PHOTOS.length;
+
+  document.getElementById('g-prev').addEventListener('click', () => goTo(idx - 1));
+  document.getElementById('g-next').addEventListener('click', () => goTo(idx + 1));
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') goTo(idx + 1);
+    if (e.key === 'ArrowLeft')  goTo(idx - 1);
+  });
+  </script>
+</body>
+</html>

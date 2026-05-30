@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | Netra Shah</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ── Navigation ── -->
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">Netra Shah</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="athletics.html">Athletics</a></li>
+        <li><a href="resume.html">Resume</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="planning.html">Planning</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><button id="theme-toggle">🌙 <span style="font-size:0.75rem;font-family:Inter,sans-serif;font-weight:600">Dark</span></button></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ── Page Header ── -->
+  <div class="page-header">
+    <h1 class="fade-up fade-up-1">Get in Touch</h1>
+    <p class="fade-up fade-up-2">Whether you want to discuss athletics, academics, photography, or volunteer/job opportunities, I'd love to hear from you.</p>
+  </div>
+
+  <!-- ── Contact Form & Links ── -->
+  <section class="section">
+    <div class="container">
+
+      <div class="contact-form fade-up fade-up-1">
+
+        <h2 style="margin-bottom:0.5rem;text-align:center;">Send a Message</h2>
+        <p style="text-align:center;color:var(--text-muted);font-size:0.9rem;margin-bottom:2rem;">I'll get back to you as soon as possible!</p>
+
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" placeholder="e.g. Jane Smith" autocomplete="name" />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="e.g. jane@email.com" autocomplete="email" />
+        </div>
+
+        <div class="form-group">
+          <label for="subject">Subject</label>
+          <input type="text" id="subject" placeholder="e.g. Athletics Inquiry" />
+        </div>
+
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" placeholder="Write your message here..."></textarea>
+        </div>
+
+        <button class="btn-submit" id="submit-btn" onclick="handleSubmit()">
+          ✉️ Send Message
+        </button>
+
+        <p id="form-feedback" style="text-align:center;margin-top:1rem;font-size:0.9rem;color:var(--accent);display:none;"></p>
+      </div>
+
+      <!-- Professional Links -->
+      <div style="text-align:center;margin-top:3rem;">
+        <p class="section-label" style="text-align:center;">Connect With Me</p>
+        <div class="contact-links">
+          <!-- Replace href and content with real details -->
+          <a href="mailto:netrashah03@gmail.com" class="contact-link-item">
+            📧 Email
+          </a>
+          <a href="tel:+1-858-750-8113" class="contact-link-item">
+            📱 Phone
+          </a>
+          <a href="https://www.instagram.com/netrashah03/?hl=en" target="_blank" rel="noopener" class="contact-link-item">
+            📸 Instagram
+          </a>
+          <a href="Netra -- Resume.pdf" download class="contact-link-item">
+            📄 Download Resume
+          </a>
+        </div>
+        
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer>
+    <p>© 2026 Netra Shah · Rancho Bernardo High School · San Diego, CA</p>
+  </footer>
+
+  <script src="dynamic-theme.js"></script>
+  <script>
+    function handleSubmit() {
+      const name    = document.getElementById('name').value.trim();
+      const email   = document.getElementById('email').value.trim();
+      const subject = document.getElementById('subject').value.trim();
+      const message = document.getElementById('message').value.trim();
+      const feedback = document.getElementById('form-feedback');
+
+      if (!name || !email || !subject || !message) {
+        feedback.textContent = '⚠️ Please fill in all fields before sending.';
+        feedback.style.color = '#e05';
+        feedback.style.display = 'block';
+        return;
+      }
+
+      // Simulate submission (replace with real backend/Formspree action)
+      document.getElementById('submit-btn').textContent = '✅ Message Sent!';
+      document.getElementById('submit-btn').disabled = true;
+      feedback.textContent = 'Thanks, ' + name + '! Your message has been received.';
+      feedback.style.color = 'var(--accent)';
+      feedback.style.display = 'block';
+    }
+  </script>
+</body>
+</html>
