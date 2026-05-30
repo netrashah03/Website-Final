@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Design & Planning | Netra Shah</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .planning-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+      margin-top: 3rem;
+    }
+    @media (max-width: 900px) {
+      .planning-two-col { grid-template-columns: 1fr; }
+    }
+
+    /* ── Outline left column ── */
+    .outline-block {
+      margin-bottom: 1.75rem;
+      padding-bottom: 1.75rem;
+      border-bottom: 1px solid var(--divider);
+    }
+    .outline-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .outline-block h4 {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-alt);
+      margin-bottom: 0.6rem;
+    }
+    .outline-block ul { list-style: none; padding: 0; }
+    .outline-block li {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      padding: 0.2rem 0 0.2rem 1.1rem;
+      position: relative;
+      line-height: 1.6;
+    }
+    .outline-block li::before {
+      content: '◆';
+      position: absolute; left: 0;
+      font-size: 0.45rem; top: 0.5rem;
+      color: var(--accent);
+    }
+
+    /* ── Sketch grid right column ── */
+    .sketch-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+    .sketch-grid .sketch-wide {
+      grid-column: 1 / -1;
+    }
+    .sketch-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .sketch-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+    .sketch-card-header {
+      padding: 0.6rem 1rem;
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--divider);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .sketch-card img {
+      width: 100%;
+      display: block;
+      object-fit: contain;
+      background: #fff;
+    }
+
+    /* ── Bottom CTA ── */
+    .planning-cta {
+      text-align: center;
+      margin-top: 4rem;
+      padding-top: 3rem;
+      border-top: 1px solid var(--divider);
+    }
+    .planning-cta p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .btn-planning {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.9rem 2.5rem;
+      background: linear-gradient(135deg, var(--accent) 0%, #1a9e9e 100%);
+      color: #fff;
+      border-radius: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      box-shadow: 0 4px 18px rgba(42,191,191,0.25);
+    }
+    .btn-planning:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(42,191,191,0.35);
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Navigation ── -->
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">Netra Shah</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="athletics.html">Athletics</a></li>
+        <li><a href="resume.html">Resume</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="planning.html">Planning</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><button id="theme-toggle">🌙 <span style="font-size:0.75rem;font-family:Inter,sans-serif;font-weight:600">Dark</span></button></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ── Page Header ── -->
+  <div class="page-header">
+    <h1 class="fade-up fade-up-1">Design &amp; Planning Documents</h1>
+    <p class="fade-up fade-up-2">Proof of thorough preparation — master outline and hand-drawn layout sketches for all six pages.</p>
+  </div>
+
+  <!-- ── Main Content ── -->
+  <section class="section">
+    <div class="container">
+      <div class="planning-two-col">
+
+        <!-- LEFT: Master Outline -->
+        <div class="fade-up fade-up-1">
+          <span class="section-label">Master Design Outline</span>
+          <h2 style="margin-bottom:2rem;">Design System Overview</h2>
+
+          <div class="outline-block">
+            <h4>Color Token Architecture</h4>
+            <ul>
+              <li><strong>Light Mode:</strong> Clean White · Light Grey · Deep Navy · Teal / Gold</li>
+              <li><strong>Dark Mode:</strong> Deep Navy · Dark Slate · Clean White · Electric Blue / Gold</li>
+            </ul>
+          </div>
+
+          <div class="outline-block">
+            <h4>Typography System</h4>
+            <ul>
+              <li><strong>Headings:</strong> Playfair Display — elegant serif for titles</li>
+              <li><strong>Body Copy:</strong> Inter — clean, modern sans-serif</li>
+            </ul>
+          </div>
+
+          <div class="outline-block">
+            <h4>Advanced JavaScript Features</h4>
+            <ul>
+              <li><strong>dynamic-theme.js</strong> — Global Light/Dark toggle via CSS class switching and localStorage persistence</li>
+              <li><strong>carousel.js</strong> — Modular photo &amp; video carousel reused on Athletics and Gallery pages; nextSlide() / prevSlide() update the DOM dynamically</li>
+            </ul>
+          </div>
+
+          <div class="outline-block">
+            <h4>Micro-Interactions &amp; Hover Effects</h4>
+            <ul>
+              <li>Sport cards: translateY lift + scale + drop-shadow on hover</li>
+              <li>Buttons &amp; nav links: smooth accent color fill transitions</li>
+              <li>Hero ring pulse animation on home page</li>
+              <li>Staggered fade-up entrance animations sitewide</li>
+            </ul>
+          </div>
+
+          <div class="outline-block">
+            <h4>Site Structure — 6 Pages</h4>
+            <ul>
+              <li>index.html — Home</li>
+              <li>athletics.html — Athletics &amp; Leadership</li>
+              <li>resume.html — Academics &amp; Experience</li>
+              <li>gallery.html — Photography Gallery</li>
+              <li>planning.html — Planning Artifacts</li>
+              <li>contact.html — Contact</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- RIGHT: Sketch Grid -->
+        <div class="fade-up fade-up-2">
+          <span class="section-label">Hand-Drawn Layout Sketches</span>
+          <h2 style="margin-bottom:1.5rem;">Page Wireframes</h2>
+
+          <div class="sketch-grid">
+
+            <!-- Home page — full width on top -->
+            <div class="sketch-card sketch-wide">
+              <div class="sketch-card-header">🏠 Home Page (index.html)</div>
+              <img src="homepagesketch.png" alt="Home page layout sketch" />
+            </div>
+
+            <!-- Athletics -->
+            <div class="sketch-card">
+              <div class="sketch-card-header">⚽ Athletics (athletics.html)</div>
+              <img src="athleticspagesketch.png" alt="Athletics page layout sketch" />
+            </div>
+
+            <!-- Academics -->
+            <div class="sketch-card">
+              <div class="sketch-card-header">📚 Academics (resume.html)</div>
+              <img src="academicspagesketch.png" alt="Academics page layout sketch" />
+            </div>
+
+            <!-- Planning -->
+            <div class="sketch-card">
+              <div class="sketch-card-header">📐 Planning (planning.html)</div>
+              <img src="planningpagesketch.png" alt="Planning page layout sketch" />
+            </div>
+
+            <!-- Contact -->
+            <div class="sketch-card">
+              <div class="sketch-card-header">✉️ Contact (contact.html)</div>
+              <img src="contactpagesketch.png" alt="Contact page layout sketch" />
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Bottom CTA ── -->
+      <div class="planning-cta fade-up fade-up-3">
+        <p>View the complete planning document including all content outlines, design specifications, and technical requirements.</p>
+        <a href="https://docs.google.com/document/d/1Oidot2aFhASQ4nDjFU644s48Jv7-YKTagAW3iYqIfUk/edit?tab=t.0" download class="btn-planning">
+          📄 View Master Planning Document
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer>
+    <p>© 2026 Netra Shah · Rancho Bernardo High School · San Diego, CA</p>
+  </footer>
+
+  <script src="dynamic-theme.js"></script>
+</body>
+</html>
